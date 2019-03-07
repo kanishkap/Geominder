@@ -70,6 +70,7 @@ function Pinging(){
 	String sql = "select * from sticky" + email.split("@")[0];
 	Class.forName("com.mysql.jdbc.Driver");
 	connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory", "root", "root");
+	//connection=DriverManager.getConnection("jdbc:mysql://admin:UUOCDSNSTWXZUTTE@sl-eu-gb-p04.dblayer.com:17649/inventory");
 	PreparedStatement ps;
 	ps = connection.prepareStatement(sql);
 	ResultSet rs = ps.executeQuery();

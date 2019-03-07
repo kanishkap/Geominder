@@ -24,6 +24,14 @@ public class RegisterServlet extends HttpServlet {
 		String fname = request.getParameter("usernamesignup");
 		String email = request.getParameter("emailsignup");
 		String pass = request.getParameter("passwordsignup");
+		
+		/*Dao dao=new Dao();
+		try {
+			Dao.create(fname, email, pass);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
 		String sql = "insert into register values('" + fname + "','" + email + "','" + pass + "')";
 
 		String tableName = "sticky" + email.split("@")[0];

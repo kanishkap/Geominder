@@ -76,13 +76,14 @@ $('.sticky-note-pre')
     { minDate: 0,
     dateFormat: 'yy-mm-dd'
     });
-  });*/
-
+  });
+*/
 var dateToday = new Date();
 var dates = $("#start_date, #end_date").datepicker({
     defaultDate: "+1w",
     changeMonth: true,
     numberOfMonths: 1,
+    dateFormat:'yy-mm-dd',
     minDate: dateToday,
     onSelect: function(selectedDate) {
         var option = this.id == "start_date" ? "minDate" : "maxDate",

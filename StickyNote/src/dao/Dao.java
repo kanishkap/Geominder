@@ -14,6 +14,7 @@ public class Dao {
 		{
 			Class.forName("com.mysql.jdbc.Driver");
 			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory","root","root");
+			//con=DriverManager.getConnection("jdbc:mysql://admin:UUOCDSNSTWXZUTTE.com/inventory");
 		}
 		catch(Exception e)
 		{
@@ -36,6 +37,9 @@ public class Dao {
 		return rs;
 		
 	}
-	
-	
+	/*public static void create(String fname,String email,String pass) throws SQLException
+	{
+		
+	}
+*/	
 }

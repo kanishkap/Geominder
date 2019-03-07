@@ -56,6 +56,7 @@ public class InsertServlet extends HttpServlet {
 			System.out.println("into connection "+message+" "+address);
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory","root","root");
+			//Connection conn=DriverManager.getConnection("jdbc:mysql://admin:UUOCDSNSTWXZUTTE@sl-eu-gb-p04.dblayer.com:17649/inventory");
 			PreparedStatement ps=conn.prepareStatement("insert into sticky"+((String) session.getAttribute("email")).split("@")[0]+"(start_date,end_date,status,message,address) values ('"+start_date+"','"+end_date+"','"+status+"','"+message+"','"+address+"')");
 
 			

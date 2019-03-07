@@ -130,8 +130,20 @@
     <servlet-name>FetchUrl</servlet-name>
     <servlet-class>Servlet.FetchUrl</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>CRUD</display-name>
+  	<servlet-name>CRUD</servlet-name>
+  	<servlet-class>CRUD.CRUD</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>FetchUrl</servlet-name>
     <url-pattern>/FetchUrl</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CRUD</servlet-name>
+  	<url-pattern>
+  	/CRUD</url-pattern>
   </servlet-mapping>
 </web-app>
