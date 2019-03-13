@@ -34,10 +34,6 @@ public class InsertServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*response.getWriter().println(request.getParameter("start_date"));
-		response.getWriter().println(request.getParameter("end_date"));
-		response.getWriter().println(request.getParameter("status"));*/
-		//response.getWriter().println(request.getParameter("address"));
 		
 		String start_date=request.getParameter("start_date");
 		String end_date=request.getParameter("end_date");
@@ -48,9 +44,6 @@ public class InsertServlet extends HttpServlet {
 		
 		String page1="";
 		
-
-
-
 		try
 		{	HttpSession session=request.getSession();
 			System.out.println("into connection "+message+" "+address);

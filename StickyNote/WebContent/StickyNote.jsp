@@ -8,12 +8,9 @@
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
-<!-- <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCXs_YJYqMk2lgMhY3m7BUPItkQBpDzRzc&libraries=places&callback=initMap"  ></script> -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXs_YJYqMk2lgMhY3m7BUPItkQBpDzRzc&libraries=places&callback=initMap"></script> -->
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCXs_YJYqMk2lgMhY3m7BUPItkQBpDzRzc&libraries=places&callback=initMap&language=de"></script>
 <script type="text/javascript" src="js/StickyNote.js"></script>
 <script type="text/javascript" src="js/Auto.js"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="css/Design.css" rel="stylesheet" type="text/css" />
 <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"type="text/css" />
@@ -31,8 +28,7 @@
 		</div> Double-click to Add Notes
 	</span>
 	<div id="notes"></div>
-
-<!-- Pinging to get the latitude and longitude -->	
+ <!-- Pinging to get the latitude and longitude -->	
 <p id="demo" style="display: none;"></p>
 <input type="hidden" id="latitude">
 <input type="hidden" id="longitude">
@@ -96,7 +92,7 @@ function getLatLong()
 			});
 	
 	}
-</script>
+</script> 
 
 
 

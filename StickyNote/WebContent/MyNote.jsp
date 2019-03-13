@@ -5,62 +5,104 @@
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"
-	type="text/javascript"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
-	type="text/javascript"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCXs_YJYqMk2lgMhY3m7BUPItkQBpDzRzc&libraries=places&callback=initMap&language=de"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link
-	href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"
-	rel="Stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/StickyNoteNote.css">
 <link href="Design.css" rel="stylesheet" type="text/css" />
-
 <link rel="stylesheet" type="text/css" href="css/MyNotes.css">
-
 <link rel="stylesheet" type="text/css" href="css/Notification.css">
 <script src="js/Notification.js" type="text/javascript"></script>
-
 <script type="text/javascript" src="js/UpdateAndDelete.js"></script>
-
 <link rel="stylesheet" type="text/css" href="css/Map.css">
 <script type="text/javascript" src="js/Auto.js"></script>
+
+
 <script type="text/javascript">
-$(function() {
-    $( "[name='start_date'],[name='end_date']" ).datepicker(
+ /*  $(function() { */
+  /*   $( "[name='start_date'],[name='end_date']" ).datepicker(
     	    { minDate: 0,
     	    dateFormat: 'yy-mm-dd'
     	    });
-    	  });
+    	  });  */ 
+    	  
+    	/*  var dateToday = new Date();
+    	  var dates = $("#start_date,#end_date").datepicker({
+    	      defaultDate: "+1w",
+    	      changeMonth: true,
+    	      numberOfMonths: 1,
+    	      dateFormat:'yy-mm-dd',
+    	      minDate: dateToday,
+    	      onSelect: function(selectedDate) {
+    	          var option = this.id == "start_date" ? "minDate" : "maxDate",
+    	              instance = $(this).data("datepicker"),
+    	              date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+    	          dates.not(this).datepicker("option", option, date);
+    	      }
+    	  });  */
+    	  $(function() {
+    	 
+    		   $(document).on('click', "[name='start_date']", function(){
+    			   var id = $(this).attr("id");
+    			   
+    			   var findId=id.split('_');	  
+    			   
+    			    $("#"+id).datepicker({
+    		           dateFormat: "yy-mm-dd",
+    		           minDate: 0,
+    		           onSelect: function () {
+    		               var dt2 = $('#end_date_'+findId[2]);               
+    		               var startDate = $(this).datepicker('getDate');
+    		               var minDate = $(this).datepicker('getDate');
+    		               var dt2Date = dt2.datepicker('getDate');
+    		               //difference in days. 86400 seconds in day, 1000 ms in second
+    		               var dateDiff = (dt2Date - minDate)/(86400 * 1000);
+    		               
+    		               startDate.setDate(startDate.getDate() + 30);
+    		               if (dt2Date == null || dateDiff < 0) {
+    		               		dt2.datepicker('setDate', minDate);
+    		               }
+    		               else if (dateDiff > 30){
+    		               		dt2.datepicker('setDate', startDate);
+    		               }
+    		               //sets dt2 maxDate to the last day of 30 days window
+    		               dt2.datepicker('option', 'maxDate', startDate);
+    		               dt2.datepicker('option', 'minDate', minDate);
+    		           }
+    		       });
+    		       $("[name='end_date']").datepicker({
+    		           dateFormat: "yy-mm-dd",
+    		           minDate: 0
+    		       });
+    		   });
+    		   });
        
-      /*  Geolocation pluscode */
-       
-       function Map(){
-	$.post("http://localhost:8080/StickyNote/GetUrl",
-			{
-	address : $('#pac-input').val()
-			},
-	
-	 function(result) {
-		$('#message').html(result); // message you want to show
-	} 
-	);
-}
+function Map(){
+    			$.post("http://localhost:8080/StickyNote/GetUrl",
+    					{
+    			address : $('#pac-input').val()
+    					}/*,
+    			
+    			function(result) {
+    				$('#message').html(result); // message you want to show
+    			}*/);
+    		}
 
-// Testing ping at server at every 60m sec below
-function Pinging(){
-	$.post("http://localhost:8080/StickyNote/FetchUrl",
-			{
-	address : $('#pac-input').val()
-			},
-	
-	function(result) {
-		$('#message').html(result); // message you want to show
-	});
-}
+    		// Testing ping at server at every 60m sec below
+ function Pinging(){
+    			$.post("http://localhost:8080/StickyNote/FetchUrl",
+    					{
+    			address : $('#pac-input').val()
+    					}/*,
+    			
+    			function(result) {
+    				$('#message').html(result); // message you want to show
+    			}*/);
+    		}
    </script>
 </head>
 
@@ -81,7 +123,7 @@ function Pinging(){
 	<jsp:include page="Header.jsp" />
 	<br>
 	
-	<!-- Pinging to get the latitude and longitude -->	
+<!-- Pinging to get the latitude and longitude -->	
 <p id="demo" style="display: none;"></p>
 <input type="hidden" id="latitude">
 <input type="hidden" id="longitude">
@@ -184,9 +226,9 @@ function getLatLong()
 			<div class="dates">
 
 				<b>Start:</b><input type="text" id="start_date_<%=sid%>"
-					value="<%=start_date%>" style="width: 96px" name="start_date">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					value="<%=start_date%>" style="width: 96px" name="start_date" autocomplete="off">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<b>End:</b><input type="text" id="end_date_<%=sid%>"
-					value="<%=end_date%>" style="width: 96px;" name="end_date">
+					value="<%=end_date%>" style="width: 96px;" name="end_date" autocomplete="off">
 
 			</div>
 			<div contenteditable class="contents">
@@ -194,16 +236,23 @@ function getLatLong()
 					value="<%=message%>" style="border: none;"> <input
 					type="hidden" id="sid" value="<%=sid%>" readonly>
 			</div>
-			<div class="absolute">
-
-				<%--  <input class="location" type="text" id="address_<%=sid%>"
-			value="<%=location%>"> --%>
-
+			
+<%-- 
+<div class="absolute"> 
+			<div class="pac-card" id="pac-card">
+		      <div id="pac-container">
+		        <input id=id="pac-input_<%=sid%>" type="text" autocomplete="off" onkeyup="initMap()" value="<%=address%>">
+		      </div>
+		    </div>
+			<div id="map"></div>
+</div>
+ --%>
+ 
+				<div class="absolute">
 				<div class="pac-card" id="pac-card">
 					<div id="pac-container">
-						<input type="text" id="pac-input_<%=sid%>" onkeyup="initMap()"
-							value="<%=address%>">
-					</div>
+					<input type="text" id="pac-input_<%=sid%>" onkeyup="initMap()" value="<%=address%>">
+				</div>
 				</div>
 				<div id="map"></div>
 			</div>
